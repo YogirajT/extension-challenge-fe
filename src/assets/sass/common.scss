@@ -1,1 +1,120 @@
-@use './variables/commonVariables' as vars;
+// VARS
+
+$clr-bg-rewardgood: #26890d;
+$clr-bg-rewardoneleaf: #26890dcc;
+$clr-bg-rewardnoleaf: #26890d99;
+$clr-bg-rewardbad: #9d9faab3;
+$clr-bg-default: #fff;
+
+$clr-bg-btb: #323c4e;
+$clr-border-gray: #ccc;
+
+$clr-text-default: #494949;
+
+$font-size: 0.8rem;
+$transition-speed: 0.8s;
+// ----------------------
+
+// ------------- MIXINS ------------- //
+@mixin transition($time, $property: all, $easing: ease-in) {
+  transition: $property $time $easing;
+}
+// ------
+
+// Animations
+
+@keyframes downEnter {
+  0% {
+    height: 0rem;
+    opacity: 0;
+  }
+  100% {
+    height: 6rem;
+    opacity: 1;
+  }
+}
+
+@keyframes downLeave {
+  0% {
+    height: 6rem;
+    opacity: 1;
+  }
+  100% {
+    height: 0rem;
+    opacity: 0;
+  }
+}
+
+// --------------------------------
+
+// Styles
+.eco-extension-container {
+  background-color: $clr-bg-default;
+  font-size: $font-size;
+  color: $clr-text-default;
+  position: fixed;
+  width: 100%;
+  height: 6rem;
+  bottom: 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center !important;
+  padding: 0rem 20rem;
+  animation: $transition-speed ease-in 0s 1 downEnter;
+  border-color: #ccc;
+  border-radius: 1rem 1rem 0rem 0rem;
+  box-shadow: 0rem 0rem 0.5rem #ccc;
+
+  &.dismiss {
+    height: 0rem;
+    opacity: 0;
+    animation: $transition-speed ease-in 0s 1 downLeave;
+  }
+
+  &.good .leaf {
+    background-color: $clr-bg-rewardgood;
+  }
+  &.oneleaf .leaf {
+    background-color: $clr-bg-rewardoneleaf;
+  }
+  &.noleaf .leaf {
+    background-color: $clr-bg-rewardnoleaf;
+  }
+  &.bad .leaf {
+    background-color: $clr-bg-rewardbad;
+  }
+
+  & .leaf {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 0 3rem;
+    transform: rotate(0deg);
+    margin: 0rem 0.5rem;
+  }
+
+  & .title > * {
+    font-size: 1.5rem;
+  }
+
+  & .description > * {
+    font-size: 0.8rem;
+  }
+
+  & .button {
+    background-color: $clr-bg-btb; /* Green */
+    border: none;
+    color: $clr-bg-default;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin-left: auto;
+    margin-right: 0;
+    cursor: pointer;
+  }
+
+  & .text-container {
+    max-width: 30rem;
+  }
+}
