@@ -1,0 +1,37 @@
+{
+  "name": "extension-challenge",
+  "private": true,
+  "description": "eco.mio Extension Challenge",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecomio/extension-challenge.git"
+  },
+  "author": "eco.mio GmbH <m@ecomio.com> (https://ecomio.com/)",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "npm run clean && webpack --config webpack/webpack.dev.js",
+    "clean": "rm -rf dist",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && rm -r dist && npm install && webpack --config webpack/webpack.dev.js",
+    "lint": "eslint */**/*.{js,ts,tsx} --quiet --fix",
+    "lint:check": "eslint */**/*.{js,ts,tsx}",
+    "test": "webpack --config webpack/webpack.dev.js && jest",
+    "test:watch": "jest --watch",
+    "watch": "webpack --config webpack/webpack.dev.js --watch"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "file-loader": "^6.2.0",
+    "jest-puppeteer": "^7.0.0",
+    "puppeteer": "^19.6.3",
+    "sass": "^1.58.0",
+    "sass-loader": "^13.2.0",
+    "ts-jest": "^27.1.2",
+    "ts-loader": "^9.3.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.6.4",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-merge": "^5.8.0"
+  }
+}

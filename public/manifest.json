@@ -1,0 +1,30 @@
+{
+  "name": "eco.mio | Hiring Challenge",
+  "description": "Good luck. You got this!",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "action": {
+    "default_icon": "images/icons/favicon.ico",
+    "default_title": "eco.mio | Decarbonize Business Travel"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["images/app/*.png"],
+      "matches": ["*://*.skyscanner.com/*", "*://*.kayak.com/*"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.skyscanner.com/*", "*://*.kayak.com/*"],
+      "js": ["js/main.js"],
+      "css": ["css/common.css"]
+    }
+  ],
+  "permissions": ["storage"],
+  "icons": {
+    "16": "images/icons/ecomio16.png",
+    "32": "images/icons/ecomio32.png",
+    "48": "images/icons/ecomio48.png",
+    "128": "images/icons/ecomio128.png"
+  }
+}

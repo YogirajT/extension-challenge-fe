@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true,
+    "module": "ES2022",
+    "target": "ES6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "esModuleInterop": true,
+    "sourceMap": false,
+    "rootDir": ".",
+    "outDir": "dist/js",
+    "noEmitOnError": false,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "typeRoots": ["src/types", "node_modules/@types"]
+  }
+}
