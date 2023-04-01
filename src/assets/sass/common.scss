@@ -9,6 +9,8 @@ $clr-bg-default: #fff;
 $clr-bg-btb: #323c4e;
 $clr-border-gray: #ccc;
 
+$clr-bg-leaf-green: green;
+
 $clr-text-default: #494949;
 
 $font-size: 0.8rem;
@@ -75,7 +77,7 @@ $zindex: 9999;
   box-shadow: 0rem 0rem 0.5rem #ccc;
   z-index: $zindex;
   
-  &.large {
+  &.kayak {
     height: 10rem;
   }
   
@@ -110,7 +112,7 @@ $zindex: 9999;
     font-size: 1.5rem;
   }
 
-  &.large .title > * {
+  &.kayak .title > * {
     font-size: 2.5rem;
   }
 
@@ -118,7 +120,7 @@ $zindex: 9999;
     font-size: 0.8rem;
   }
 
-  &.large .description > * {
+  &.kayak .description > * {
     font-size: 1.5rem;
   }
 
@@ -136,11 +138,42 @@ $zindex: 9999;
     cursor: pointer;
   }
 
-  &.large .button {
+  &.kayak .button {
     font-size: 2rem;
   }
 
-  & .text-container {
-    max-width: 30rem;
+  &.kayak .text-container {
+    max-width: 70rem;
   }
+}
+
+.tooltip {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  z-index: 999;
+  background-color: $clr-border-gray;
+  border-radius: 50%;
+  right: 0.5rem;
+  top: 50%;
+  opacity: 0;
+  @include transition($transition-speed, all, cubic-bezier(0.22, 0.44, 0, 1));
+  *:hover > & {
+    opacity: 1;
+  }
+  &.kayak {
+    left: -3.5rem;
+    top: 15%;
+  }
+}
+
+.tooltip_icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0 1.5rem;
+  transform: rotate(0deg);
+  margin: 0rem 0.5rem;
+  position: absolute;
+  top: 0.5rem;
+  background-color: $clr-bg-leaf-green;
 }

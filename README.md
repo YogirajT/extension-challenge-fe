@@ -14,38 +14,6 @@
 
 ---
 
-## Description
-
-This repo contains base code for the eco.mio hiring challenge. What you are looking at is a stub version of a browser extension. Learn about how to get started below. But first, here is the task:
-
-### Main task
-
-Build a browser extension that augments the user experience for a travellers performing an air or rail search on https://skyscanner.com and https://kayak.com. This extension should do the following:
-
-- Read out the user's destination from the site
-- Provide the user in an intuitive way with dummy sustainability information of their trip
-  - The data can be anything, e.g. a sustainability score of the destination
-  - The data must be fetched from a DB through a backend app (ideally written in Django)
-- Save each search to the database (origin, time of search, data displayed to the user)
-
-Bonus points will be awarded for:
-
-- Great UI
-- Tooltip on the element with some more (dummy) information
-
-Solve the task as if you were working on it in a professional environment.
-
-### Additional Task
-
-You will find a class `DOMElement.ts` in the src directory. Give feedback about it as if you were doing a code review. Use comments in the code for this.
-You may also alter it and use it for your own implementation.
-
-### Questions and Submission
-
-if you have any questions, contact Mario at m@ecomio.com. Once you are done with the task notify Mario via email (m@ecomio.com) and include the link to your repository.
-
----
-
 ## Prerequisites
 
 1. Installed Chrome or Edge Browser
@@ -54,6 +22,8 @@ if you have any questions, contact Mario at m@ecomio.com. Once you are done with
 ---
 
 ## Installation
+
+* Make sure you're running https://github.com/YogirajT/ecomio-be locally for this extension to save and retrive data.
 
 1. Create your own repository from the template and clone into it
 
@@ -154,4 +124,16 @@ This is a list of tools, used in the project
 
 ---
 
-# Good Luck!
+# Screenshots
+
+* The popup at the bottom after you seach on Kayak or Skyscanner
+
+<picture>
+  <img alt="Popup image" src="__docs__/popup.png">
+</picture>
+
+* Tooliplike icon on hovering buttons
+
+<picture>
+  <img alt="Product image" src="__docs__/tooltip.png">
+</picture>

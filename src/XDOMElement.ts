@@ -21,7 +21,10 @@ enum Classes {
   BUTTON = 'button',
   DISMISS = 'dismiss',
   CONTAINER = 'eco-extension-container',
-  LARGE = "large"
+  LARGE = "large",
+  KAYAK = "kayak",
+  TOOLTIP_CONTAINER = "tooltip",
+  TOOLTIP_ICON = "tooltip_icon"
 }
 
 function rng(min: number, max: number) {
@@ -65,9 +68,9 @@ export default class XDOMElement {
   }
 
   prependToDom(overwrite?: boolean): Element {
-    const existedElement = this.parent.querySelector(`:scope > ${this.styles}`);
-    if (existedElement && overwrite) {
-      this.parent.removeChild(existedElement);
+    const existingElement = this.parent.querySelector(`:scope > ${this.styles}`);
+    if (existingElement && overwrite) {
+      this.parent.removeChild(existingElement);
     }
     this.parent.prepend(this.element);
     return this.element;
@@ -113,7 +116,7 @@ export class ClassArrayAppender implements IClassAppender {
   }
 
   getStyles(): string {
-    return `.${this.styles.join(' .')}`;
+    return `.${this.styles.join('.')}`;
   }
 
   appendTo(element: Element): void {
@@ -299,6 +302,8 @@ export abstract class ResultsPageObserver implements Observer {
 
   abstract getMainContainerClasses(destinationInfo: Destination): string[]
 
+  abstract getToolipContainerClasses(): string[]
+
   observe(): void {
 
     this.observer = new MutationSummary({
@@ -371,6 +376,16 @@ export abstract class ResultsPageObserver implements Observer {
     this.setupDismissListener();
   }
 
+  async createTooltipIcon(elementToAttachTo: Element) {
+    const styleAppender = new ClassArrayAppender(this.getToolipContainerClasses());
+    const containerElement = new XDOMElement(elementToAttachTo, styleAppender);
+    const container = containerElement.prependToDom(true);
+
+    const styleAppenderLeaf = new ClassAppender(Classes.TOOLTIP_ICON);
+    const leafElement = new XDOMElement(container, styleAppenderLeaf);
+    leafElement.appendToDom();
+  }
+
   setupDismissListener() {
     if (this.button) this.button.addEventListener('click', this.onDismiss.bind(this));
   }
@@ -394,7 +409,7 @@ export abstract class ResultsPageObserver implements Observer {
         const all_search_buttons = document.querySelectorAll(this.configLoader.elementSelectors.individualFlightButtonSelectors);
 
         all_search_buttons.forEach((button) => {
-          button.setAttribute('title', 'The ecomio tooltip we all love');
+          this.createTooltipIcon(button)
         });
 
         resolve();
@@ -409,6 +424,9 @@ export abstract class ResultsPageObserver implements Observer {
 
 
 export class KayakResultsPageObserver extends ResultsPageObserver implements Observer {
+  getToolipContainerClasses(): string[] {
+    return [Classes.TOOLTIP_CONTAINER, Classes.KAYAK]
+  }
 
   async getDestination() {
     const url = await cache.get<string>(`${Hostnames.KAYAK}:${StorageKeys.DESTINATION}`);
@@ -416,7 +434,7 @@ export class KayakResultsPageObserver extends ResultsPageObserver implements Obs
   }
 
   getMainContainerClasses(destinationInfo: Destination): string[] {
-    return [Classes.CONTAINER, getLeafColor(destinationInfo), Classes.LARGE]
+    return [Classes.CONTAINER, getLeafColor(destinationInfo), Classes.KAYAK]
   }
 
 }
@@ -424,6 +442,9 @@ export class KayakResultsPageObserver extends ResultsPageObserver implements Obs
 
 
 export class SkyscannerResultsPageObserver extends ResultsPageObserver implements Observer {
+  getToolipContainerClasses(): string[] {
+    return [Classes.TOOLTIP_CONTAINER]
+  }
 
   async getDestination() {
     const url = await cache.get<string>(`${Hostnames.SKYSCANNER}:${StorageKeys.DESTINATION}`);
