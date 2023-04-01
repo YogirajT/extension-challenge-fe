@@ -67,9 +67,14 @@ export default class XDOMElement {
     return this.element;
   }
 
-  prependToDom(overwrite?: boolean): Element {
+  prependToDom(): Element {
+    this.parent.prepend(this.element);
+    return this.element;
+  }
+  
+  replaceOrPrependToDom(): Element {
     const existingElement = this.parent.querySelector(`:scope > ${this.styles}`);
-    if (existingElement && overwrite) {
+    if (existingElement) {
       this.parent.removeChild(existingElement);
     }
     this.parent.prepend(this.element);
@@ -379,7 +384,7 @@ export abstract class ResultsPageObserver implements Observer {
   async createTooltipIcon(elementToAttachTo: Element) {
     const styleAppender = new ClassArrayAppender(this.getToolipContainerClasses());
     const containerElement = new XDOMElement(elementToAttachTo, styleAppender);
-    const container = containerElement.prependToDom(true);
+    const container = containerElement.replaceOrPrependToDom();
 
     const styleAppenderLeaf = new ClassAppender(Classes.TOOLTIP_ICON);
     const leafElement = new XDOMElement(container, styleAppenderLeaf);

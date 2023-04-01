@@ -26,6 +26,7 @@ export default class DOMElement {
     return this.element;
   }
 
+  // boolean params are usually a not a great pattern. can split the method into 2 explicit ones instead making the purpose clearer
   prependToDom(overwrite?: boolean): HTMLElement {
     const existedElement = this.parent.querySelector(`:scope > .${this.styles}`);
     // can be simplified. check implementation in XDOMElements.ts
