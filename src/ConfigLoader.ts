@@ -7,7 +7,7 @@ export enum Hostnames {
 const SITE_CONFIG = {
   [Hostnames.SKYSCANNER]: {
     destinationInputSelector: '#destinationInput-input',
-    rootSelector: ".keel",
+    rootSelector: "#pagewrap",
     searchButtonSelector: '[data-testid="desktop-cta"]',
     individualFlightButtonSelectors: '[class*="TicketStub_ctaButton"]',
     // very bad idea with this randomly generated hash
@@ -21,7 +21,7 @@ const SITE_CONFIG = {
     contentClass: ".nrc6-wrapper"
   },
 };
-"Iqt3 Iqt3-mod-bold Button-No-Standard-Style Iqt3-mod-variant-solid Iqt3-mod-theme-progress Iqt3-mod-shape-rounded-medium Iqt3-mod-shape-mod-default Iqt3-mod-spacing-default Iqt3-mod-size-large Iqt3-mod-animation-search"
+
 export type Config = {
   destinationInputSelector: string;
   rootSelector: string;

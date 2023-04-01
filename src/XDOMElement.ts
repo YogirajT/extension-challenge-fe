@@ -199,12 +199,12 @@ export class SkyscannerHomePageObserver extends HomePageObserver {
   }
 
   observe(): void {
-    let pageroot = document.querySelector(this.config.elementSelectors.rootSelector);
+    let pageRoot = document.querySelector(this.config.elementSelectors.rootSelector);
 
-    if (!pageroot) return;
+    if (!pageRoot) return;
 
     this.observer = new MutationSummary({
-      rootNode: pageroot,
+      rootNode: pageRoot,
       callback: (summaries: any) => {
         summaries.forEach((summary: any) => {
           summary.added.forEach((element: any) => {
