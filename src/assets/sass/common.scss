@@ -13,6 +13,7 @@ $clr-text-default: #494949;
 
 $font-size: 0.8rem;
 $transition-speed: 0.8s;
+$zindex: 9999;
 // ----------------------
 
 // ------------- MIXINS ------------- //
@@ -28,6 +29,10 @@ $transition-speed: 0.8s;
     height: 0rem;
     opacity: 0;
   }
+  80% {
+    height: 6rem;
+    opacity: 0.8;
+  }
   100% {
     height: 6rem;
     opacity: 1;
@@ -38,6 +43,10 @@ $transition-speed: 0.8s;
   0% {
     height: 6rem;
     opacity: 1;
+  }
+  80% {
+    height: 1.2rem;
+    opacity: 0;
   }
   100% {
     height: 0rem;
@@ -64,7 +73,12 @@ $transition-speed: 0.8s;
   border-color: #ccc;
   border-radius: 1rem 1rem 0rem 0rem;
   box-shadow: 0rem 0rem 0.5rem #ccc;
-
+  z-index: $zindex;
+  
+  &.large {
+    height: 10rem;
+  }
+  
   &.dismiss {
     height: 0rem;
     opacity: 0;
@@ -96,8 +110,16 @@ $transition-speed: 0.8s;
     font-size: 1.5rem;
   }
 
+  &.large .title > * {
+    font-size: 2.5rem;
+  }
+
   & .description > * {
     font-size: 0.8rem;
+  }
+
+  &.large .description > * {
+    font-size: 1.5rem;
   }
 
   & .button {
@@ -112,6 +134,10 @@ $transition-speed: 0.8s;
     margin-left: auto;
     margin-right: 0;
     cursor: pointer;
+  }
+
+  &.large .button {
+    font-size: 2rem;
   }
 
   & .text-container {
