@@ -77,8 +77,7 @@ export default class XDOMElement {
     if (existingElement) {
       this.parent.removeChild(existingElement);
     }
-    this.parent.prepend(this.element);
-    return this.element;
+    return this.prependToDom()
   }
 
   addStyles(styles: IClassAppender): Element {

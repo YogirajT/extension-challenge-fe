@@ -26,6 +26,7 @@ class BootstrapPlugin {
 
   observe() {
     this.observer?.observe();
+    return this;
   }
 }
 
@@ -38,23 +39,15 @@ const isHomepage = configLoader.path.length <= 1;
 
 let observer;
 
-
-if (configLoader.host === Hostnames.SKYSCANNER) {
-
-  if (isHomepage) {
-    observer = new SkyscannerHomePageObserver(configLoader);
-  } else {
-    observer = new SkyscannerResultsPageObserver(configLoader);
-  }
-
-} else if (configLoader.host === Hostnames.KAYAK) {
-
-  if (isHomepage) {
-    observer = new KayakHomePageObserver(configLoader);
-  } else {
-    observer = new KayakResultsPageObserver(configLoader);
-  }
-
+switch (configLoader.host) {
+  case Hostnames.SKYSCANNER:
+    observer = isHomepage ? new SkyscannerHomePageObserver(configLoader) : new SkyscannerResultsPageObserver(configLoader);
+    break;
+  case Hostnames.KAYAK:
+    observer = isHomepage ? new KayakHomePageObserver(configLoader) : new KayakResultsPageObserver(configLoader);
+    break;
+  default:
+    // handle other hosts or throw an error if necessary
 }
 
 if (observer) {
